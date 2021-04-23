@@ -4,7 +4,7 @@ The data for clustering can get really complex in many of the real world applica
 
 We will discuss two clustering techniques - K means and MST based partitioning.
 
-** K-means clustering**
+**K-means clustering**
 
 This is an iterative clustering algorithm typically run with different start states until a satisfactory partitioning is done. The start state being selection of cluster centers. The number of clusters needs to be defined beforehand. The algorithm runs in the following way -
 
