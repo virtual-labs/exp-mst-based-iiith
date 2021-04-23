@@ -12,10 +12,10 @@
 	{
 		"question": " 2. Which algorithm is most suitable for these data points? <img src='images/q10_points.png'>",
 		"answers": {
-			"a": "answer1",
-			"b": "answer2",
-			"c": "answer3",
-			"d": "answer4"
+			"a": "DBSCAN< ",
+			"b": "K-Means",
+			"c": "Both a and b ",
+			"d": "None"
 		},
 		"correctAnswer": "b"
 	},
