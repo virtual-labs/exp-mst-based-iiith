@@ -1,10 +1,9 @@
-The high level goals of the experiment are:
+In the experiment window,  
 
- 1. Understand the idea of data clustering.
-   
- 2. Understand how the choice an clustering algorithm is important for desired results.
-   
- 3. Understand the described two clustering methods K-means and MST based.
-   
- 4. Understand the difference between the two approaches used and the different results that these may give on similar data.
+ 1. Select the clustering method on the top right.  
+ 2. To plot data points and means on the graph - load custom datasets. or mark manually or randomly generate using the options in the side pane.  
+ 3. 'Start' will begin the clustering process.  
+ 4. 'Run' will run one iteration of the clustering process. (Applicable for K-means method).  
+ 5. 'Finish' will complete the clustering process to reach an optimal solution. (Applicable for K-means method).  
+
 
