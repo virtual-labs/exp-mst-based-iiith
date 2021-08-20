@@ -8,11 +8,11 @@ We will discuss two clustering techniques - K means and MST based partitioning.
 
 This is an iterative clustering algorithm typically run with different start states until a satisfactory partitioning is done. The start state being selection of cluster centers. The number of clusters needs to be defined beforehand. The algorithm runs in the following way -
 
- - Choose k cluster centers to coincide with k randomly chosen data points or k randomly defined points inside the hypervolume containing the data set.
+ 1. Choose k cluster centers to coincide with k randomly chosen data points or k randomly defined points inside the hypervolume containing the data set.
   
- - Assign each point to the closest cluster. The squared euclidean distance is used here. Recompute the new cluster centers as the centroids of the resultant clusters.
+ 2. Assign each point to the closest cluster. The squared euclidean distance is used here. Recompute the new cluster centers as the centroids of the resultant clusters.
   
- - Repeat this until convergence is achieved, i.e the cluster membership is stable.
+ 3. Repeat this until convergence is achieved, i.e the cluster membership is stable.
 
 Several variants of this algorithm have been reported in the literature. Some attempt to select good initial centers, some permit splitting and merging of the formed clusters for better results.
 
