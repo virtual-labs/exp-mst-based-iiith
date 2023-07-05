@@ -1,0 +1,22 @@
+[{
+		"question": "1. Let X1 = (4,5), X2 = (1,4), X3 = (0,1) and X4 = (5,0), and consider the following 3 partitions: i) D1 = {X1, X2}, D2 = {X3, X4}  ii) D1 = {X1, X4}, D2 = {X2, X3}  iii) D1 = {X1, X2, X3}, D2 = {X4} Which partition is favored by the sum-of-squarred error? Squarred error for each partition is defined by:<img src='images/q10_sqerror.png'> Where mi is the mean of partition Di.",
+		"answers": {
+			"a": "i",
+			"b": "ii",
+			"c": "iii",
+			"d": "done"
+		},
+		"correctAnswer": "c"
+	},
+
+	{
+		"question": " 2. Which algorithm is most suitable for these data points? <img src='images/q10_points.png'>",
+		"answers": {
+			"a": "DBSCAN< ",
+			"b": "K-Means",
+			"c": "Both a and b ",
+			"d": "None"
+		},
+		"correctAnswer": "b"
+	}
+]
