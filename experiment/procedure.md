@@ -21,11 +21,11 @@ Toggle features to enhance clarity:
 # Controls
 | Button         | Action                                                              |
 | -------------- | ------------------------------------------------------------------- |
-| **Initialize** | Sets up initial centroids and allows simulation control.            |
-| **Step**       | Perform one K-means iteration.                                      |
-| **Run**        | Starts the simulation, iteratively updating clusters and centroids. |
-| **Pause**      | Temporarily halts the ongoing simulation.                           |
-| **Reset**      | Clears clustering progress but keeps data points intact.            |
+| Initialize | Sets up initial centroids and allows simulation control.            |
+| Step       | Perform one K-means iteration.                                      |
+| Run        | Starts the simulation, iteratively updating clusters and centroids. |
+| Pause      | Temporarily halts the ongoing simulation.                           |
+| Reset      | Clears clustering progress but keeps data points intact.            |
 
 # In the Info Panel, observe:
 - Iteration Count and Convergence Status
@@ -35,3 +35,7 @@ Toggle features to enhance clarity:
   - Silhouette Score
   - Davies-Bouldin Index
   - Cluster Statistics: Size, centroid coordinates, variance per cluster.
+ 
+  # Export the Data
+  - Export Image: To export the image of the current simulation state
+  - Export Data: To export the csv of the current simulation state
