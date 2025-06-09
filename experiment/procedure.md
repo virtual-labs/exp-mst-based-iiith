@@ -35,7 +35,6 @@ Toggle features to enhance clarity:
   - Silhouette Score
   - Davies-Bouldin Index
   - Cluster Statistics: Size, centroid coordinates, variance per cluster.
- 
-  # Export the Data
+# Export the Data
   - Export Image: To export the image of the current simulation state
   - Export Data: To export the csv of the current simulation state
