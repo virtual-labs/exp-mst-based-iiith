@@ -1,0 +1,157 @@
+/* Responsive styles for K-means Clustering Simulation 
+ * This file contains only responsive layout adjustments without changing functionality
+ */
+
+/* Base responsive adjustments */
+@media (max-width: 1200px) {
+  /* Layout adjustments for medium screens */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .canvas-container {
+    min-height: 500px;
+  }
+  
+  .info-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  /* Typography adjustments */
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  /* Layout adjustments */
+  .info-panel {
+    grid-template-columns: 1fr;
+  }
+  
+  .cluster-stats-container {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+  
+  /* Control adjustments */
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .button-group .btn {
+    flex: 1;
+    min-width: 100px;
+  }
+  
+  .simulation-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .simulation-controls .btn {
+    flex: 1;
+    min-width: 80px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  /* Typography adjustments */
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .header-description {
+    font-size: 0.875rem;
+  }
+  
+  /* Layout adjustments */
+  .main-content {
+    padding: 10px;
+  }
+  
+  .canvas-container {
+    min-height: 300px;
+  }
+  
+  /* Control adjustments */
+  .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .range-with-value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .range-value {
+    margin-top: 5px;
+  }
+  
+  /* Stack form items */
+  .status-item, .metric-item {
+    margin-bottom: 10px;
+  }
+  
+  /* Adjust footer */
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 360px) {
+  .canvas-container {
+    min-height: 250px;
+  }
+  
+  .canvas-controls {
+    bottom: 5px;
+    right: 5px;
+  }
+  
+  .btn-icon {
+    padding: 4px;
+  }
+  
+  .btn-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Ensure canvas is responsive */
+#visualization-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Make sure form controls are touchable on mobile */
+@media (max-width: 768px) {
+  input[type="range"]::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .form-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+}
