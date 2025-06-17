@@ -1,23 +1,64 @@
 In order to elaborate the concept, let us take an example of the library system. The books present in a library will be related to a variety of topics. Books based on similar topics are placed together. Say, some books are on computer programming, some on database systems, some on computer graphics, and so on. Sections are created in the library titled with these topics and the related books are kept in that shelf. Further sub-sections can be created on sub-topics if needed. When a visitor wants to search a book on specific topic he browses that particular section instead of going through all the books in the library.
 
-The data for clustering can get really complex in many of the real world applications. It was relatively simple in the above example. The data to be clustered needs to be represented in a feature space. Then a suitable distance measure is defined to calculate the dissimilarity between to data points. The well-known dissimilarity measures used are Euclidean distance or Minkowski distance.
+### Introduction to Clustering
+To understand clustering, consider a library system example:
+- Books are organized by topics (e.g., programming, databases, graphics)
+- Related books are placed together in sections
+- Sub-sections can be created for subtopics
+- This organization helps visitors find books efficiently
 
-We will discuss two clustering techniques - K means and MST based partitioning.
+### Data Representation and Distance Measures
 
-**K-means clustering**
+#### Feature Space Representation
+- Data points are represented in a feature space
+- Each point has multiple attributes/features
+- Complex real-world data requires careful representation
 
-This is an iterative clustering algorithm typically run with different start states until a satisfactory partitioning is done. The start state being selection of cluster centers. The number of clusters needs to be defined beforehand. The algorithm runs in the following way -
+#### Distance Measures
+Common measures include:
+- Euclidean distance: $d(x,y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$
+- Minkowski distance: $d(x,y) = (\sum_{i=1}^n |x_i - y_i|^p)^{1/p}$
+- These help quantify dissimilarity between data points
 
- 1. Choose k cluster centers to coincide with k randomly chosen data points or k randomly defined points inside the hypervolume containing the data set.
-  
- 2. Assign each point to the closest cluster. The squared euclidean distance is used here. Recompute the new cluster centers as the centroids of the resultant clusters.
-  
- 3. Repeat this until convergence is achieved, i.e the cluster membership is stable.
+### Clustering Techniques
 
-Several variants of this algorithm have been reported in the literature. Some attempt to select good initial centers, some permit splitting and merging of the formed clusters for better results.
+#### 1. K-means Clustering
+An iterative algorithm that:
+1. **Initialization**
+   - Choose $k$ cluster centers
+   - Can be random data points or random positions
 
-**MST based clustering**
+2. **Assignment**
+   - Assign each point to nearest cluster
+   - Use squared Euclidean distance
+   - Recompute cluster centers as centroids
 
-This is a graph theoretic clustering algorithm based on construction of minimal spanning trees(MST) of the data. The edge lengths are the squared euclidean distances between the two nodes. Edges with length greater than some threshold are then deleted from the MST to form data clusters.
+3. **Iteration**
+   - Repeat until convergence
+   - Stop when cluster membership stabilizes
 
-Many variants of the algorithm exist in the literature attempting to improve clustering results. The implementation in our experiment is from [Ref #3]. First, the MST is constructed on the data points. Then the clustering process is iterated over a range of threshold edge lengths. Each time ratio of Intra-cluster distance to Inter-cluster distance is calculated for the data points in the clustering result. The final cluster set selected based on the threshold which has the minimum Intra-cluster to Inter-cluster distance ratio.
+**Variants**:
+- Improved initial center selection
+- Cluster splitting and merging
+- Various optimization techniques
+
+#### 2. MST-Based Clustering
+A graph-theoretic approach that:
+
+1. **MST Construction**
+   - Build minimal spanning tree of data points
+   - Edge lengths = squared Euclidean distances
+
+2. **Cluster Formation**
+   - Delete edges exceeding threshold $\theta$
+   - Form clusters from remaining connected components
+
+3. **Threshold Selection**
+   - Iterate over range of threshold values
+   - Calculate Intra-cluster to Inter-cluster distance ratio
+   - Select threshold with minimum ratio
+
+**Implementation Details**:
+- Based on [An Efficient Minimum Spanning Tree based Clustering Algorithm](references.md#3)
+- Optimizes cluster quality
+- Balances intra and inter-cluster distances
