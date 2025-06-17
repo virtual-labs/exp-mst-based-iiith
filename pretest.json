@@ -1,0 +1,107 @@
+{
+	"version": 2.0,
+	"questions": [
+		{
+			"question": "1. What is the primary purpose of clustering in data analysis?",
+			"answers": {
+				"a": "To group similar data points together based on their characteristics",
+				"b": "To predict future values of data points",
+				"c": "To reduce the dimensionality of the data",
+				"d": "To remove outliers from the dataset"
+			},
+			"correctAnswer": "a",
+			"explanations": {
+				"a": "Correct. Clustering's main purpose is to organize data into groups where points within each group are similar to each other and different from points in other groups.",
+				"b": "This describes prediction or regression tasks, not clustering.",
+				"c": "While dimensionality reduction can be a preprocessing step, it's not the primary purpose of clustering.",
+				"d": "Outlier detection can be a byproduct of clustering but is not its main purpose."
+			},
+			"difficulty": "beginner"
+		},
+		{
+			"question": "Q2. Which algorithm is most suitable for these data points?  <br>$\\\\$ <img src='images/q10_points.png'>",
+			"answers": {
+				"a": "DBSCAN",
+				"b": "K-Means",
+				"c": "Both a and b",
+				"d": "None"
+			},
+			"correctAnswer": "b",
+			"explanations": {
+				"a": "DBSCAN is not the best choice here as the data points appear to be in well-defined spherical clusters, which is not DBSCAN's strength.",
+				"b": "Correct. K-Means is most suitable because the data points form distinct spherical clusters with clear centers, which is ideal for K-Means clustering.",
+				"c": "While both algorithms can cluster data, K-Means is more appropriate for this specific data distribution.",
+				"d": "The data points show clear clustering patterns, so clustering algorithms are definitely applicable."
+			},
+			"difficulty": "intermediate"
+		},
+		{
+			"question": "Q3. Let $X_1 = (4,5)$, $X_2 = (1,4)$, $X_3 = (0,1)$ and $X_4 = (5,0)$, and consider the following 3 partitions: <br>i) $D_1 = \\{X_1, X_2\\}$, $D_2 = \\{X_3, X_4\\}$  <br>ii) $D_1 = \\{X_1, X_4\\}$, $D_2 = \\{X_2, X_3\\}$  <br>iii) $D_1 = \\{X_1, X_2, X_3\\}$, $D_2 = \\{X_4\\}$ <br>Which partition is favored by the sum-of-squared error? Squared error for each partition is defined by: <br>$\\\\$ <img src='images/q10_sqerror.png'> Where $m_i$ is the mean of partition $D_i$.",
+			"answers": {
+				"a": "i",
+				"b": "ii",
+				"c": "iii",
+				"d": "None of the above"
+			},
+			"correctAnswer": "c",
+			"explanations": {
+				"a": "Partition i has higher squared error because it groups points that are far apart (X1,X2) and (X3,X4), leading to larger deviations from their means.",
+				"b": "Partition ii also has higher squared error as it creates clusters with points that are not naturally close to each other.",
+				"c": "Correct. Partition iii has the lowest squared error because it groups the three closer points (X1,X2,X3) together, minimizing the overall deviation from their means.",
+				"d": "One of the given partitions must be the correct answer as they represent all possible valid groupings."
+			},
+			"difficulty": "intermediate"
+		},
+		{
+			"question": "Q4. In MST-based clustering, how is the final clustering result determined?",
+			"answers": {
+				"a": "By selecting the threshold that minimizes the ratio of intra-cluster to inter-cluster distances",
+				"b": "By choosing the threshold that creates the maximum number of clusters",
+				"c": "By using a fixed threshold value for all datasets",
+				"d": "By selecting the threshold that maximizes the number of edges in the MST"
+			},
+			"correctAnswer": "a",
+			"explanations": {
+				"a": "Correct. The algorithm iterates over different threshold values and selects the one that minimizes the ratio of intra-cluster to inter-cluster distances, ensuring optimal cluster separation.",
+				"b": "The number of clusters is not the primary criterion for selecting the threshold.",
+				"c": "Using a fixed threshold would not account for the varying characteristics of different datasets.",
+				"d": "The number of edges in the MST is fixed and not related to threshold selection."
+			},
+			"difficulty": "advanced"
+		},
+		{
+			"question": "Q5. What is the main advantage of using MST-based clustering over K-means?",
+			"answers": {
+				"a": "It can automatically determine the optimal number of clusters",
+				"b": "It requires less computational resources",
+				"c": "It always produces spherical clusters",
+				"d": "It doesn't require any distance calculations"
+			},
+			"correctAnswer": "a",
+			"explanations": {
+				"a": "Correct. MST-based clustering can determine the optimal number of clusters through its threshold selection process, unlike K-means which requires the number of clusters to be specified beforehand.",
+				"b": "MST-based clustering typically requires more computational resources due to the MST construction and threshold iteration process.",
+				"c": "MST-based clustering does not guarantee spherical clusters, as it can find clusters of arbitrary shapes.",
+				"d": "MST-based clustering requires distance calculations between points to construct the minimum spanning tree."
+			},
+			"difficulty": "advanced"
+		},
+		{
+			"question": "Q6. What is the role of the minimum spanning tree in MST-based clustering?",
+			"answers": {
+				"a": "It connects all data points with minimum total edge length while preserving the natural structure of the data",
+				"b": "It creates a hierarchical structure of the data points",
+				"c": "It reduces the dimensionality of the data",
+				"d": "It identifies outliers in the dataset"
+			},
+			"correctAnswer": "a",
+			"explanations": {
+				"a": "Correct. The MST connects all points with minimum total edge length, which helps preserve the natural structure and relationships between data points.",
+				"b": "While the MST shows connections, it doesn't create a hierarchical structure like hierarchical clustering.",
+				"c": "The MST doesn't reduce dimensionality; it maintains the original feature space.",
+				"d": "While outliers might be visible in the MST, identifying them is not its primary purpose."
+			},
+			"difficulty": "intermediate"
+		}
+	]
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-means Clustering Simulation</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-content">
+        <h1>K-means Clustering Simulation</h1>
+        <p class="header-description">Interactive visualization and analysis tool for clustering algorithms</p>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="visualization-section">
+        <div class="canvas-container">
+          <canvas id="visualization-canvas"></canvas>
+          <div class="canvas-controls">
+            <button id="zoom-in" class="btn btn-icon" title="Zoom In">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
+            </button>
+            <button id="zoom-out" class="btn btn-icon" title="Zoom Out">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 11h14v2H5z"/></svg>
+            </button>
+            <button id="reset-view" class="btn btn-icon" title="Reset View">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M18.537 19.567A9.961 9.961 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 2.136-.67 4.116-1.81 5.74L17 12h3a8 8 0 1 0-2.46 5.772l.997 1.795z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="info-panel">
+          <div class="info-card">
+            <h3 class="card-title">Simulation Status</h3>
+            <div class="status-content">
+              <div class="status-item">
+                <span class="status-label">Iteration:</span>
+                <span id="iteration-count" class="status-value">0</span>
+              </div>
+              <div class="status-item">
+                <span class="status-label">Status:</span>
+                <span id="convergence-status" class="status-value status-waiting">Not started</span>
+              </div>
+              <div class="status-item">
+                <span class="status-label">Points:</span>
+                <span id="point-count" class="status-value">0</span>
+              </div>
+              <div class="status-item">
+                <span class="status-label">Clusters:</span>
+                <span id="cluster-count" class="status-value">3</span>
+              </div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-label">Convergence Progress</div>
+              <div class="progress-track">
+                <div id="convergence-progress" class="progress-bar" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3 class="card-title">Metrics</h3>
+            <div class="metrics-content">
+              <div class="metric-item">
+                <span class="metric-label">Intra-cluster Variance:</span>
+                <span id="variance-value" class="metric-value">-</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-label">Silhouette Score:</span>
+                <span id="silhouette-value" class="metric-value">-</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-label">Davies-Bouldin Index:</span>
+                <span id="davies-bouldin-value" class="metric-value">-</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card cluster-stats">
+            <h3 class="card-title">Cluster Statistics</h3>
+            <div id="cluster-statistics" class="cluster-stats-container">
+              <div class="empty-state">
+                <p>Run the simulation to see cluster statistics</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="control-section">
+        <div class="control-panel">
+          <div class="panel-section">
+            <h3 class="section-title">Data Generation</h3>
+            <div class="section-content">
+              <div class="form-group">
+                <label for="variance">Spread:</label>
+                <div class="range-with-value">
+                  <input type="range" id="variance" min="0.1" max="5" step="0.1" value="1.0" class="form-range">
+                  <span id="variance-value-display" class="range-value">1.0</span>
+                </div>
+              </div>
+              
+              <div class="form-group button-group">
+                <button id="generate-data" class="btn btn-primary">Generate 250 Random Points</button>
+                <button id="clear-data" class="btn btn-secondary">Clear</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h3 class="section-title">Algorithm Parameters</h3>
+            <div class="section-content">
+              <div class="form-group">
+                <label for="k-value">K (Number of Clusters):</label>
+                <div class="range-with-value">
+                  <input type="range" id="k-value" min="2" max="10" step="1" value="3" class="form-range">
+                  <span id="k-value-display" class="range-value">3</span>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="distance-metric">Distance Metric:</label>
+                <select id="distance-metric" class="form-control">
+                  <option value="euclidean">Euclidean</option>
+                  <option value="manhattan">Manhattan</option>
+                  <option value="chebyshev">Chebyshev</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="init-method">Initialization Method:</label>
+                <select id="init-method" class="form-control">
+                  <option value="random">K-means</option>
+                </select>
+                <div class="tooltip-container">
+                  <button class="tooltip-trigger">?</button>
+                  <div class="tooltip-content">
+                    <p><strong>Random:</strong> Place centroids randomly within data bounds</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="max-iterations">Maximum Iterations:</label>
+                <div class="range-with-value">
+                  <input type="range" id="max-iterations" min="5" max="500" step="10" value="100" class="form-range">
+                  <span id="max-iterations-display" class="range-value">100</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h3 class="section-title">Visualization Options</h3>
+            <div class="section-content">
+              <div class="form-group">
+                <div class="checkbox-group">
+                  <input type="checkbox" id="show-centroids" class="form-checkbox" checked>
+                  <label for="show-centroids">Show Centroids</label>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="checkbox-group">
+                  <input type="checkbox" id="show-voronoi" class="form-checkbox" checked>
+                  <label for="show-voronoi">Show Cluster Boundaries</label>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="checkbox-group">
+                  <input type="checkbox" id="show-history" class="form-checkbox" checked>
+                  <label for="show-history">Show Centroid History</label>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="checkbox-group">
+                  <input type="checkbox" id="show-grid" class="form-checkbox" checked>
+                  <label for="show-grid">Show Grid</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel-section">
+            <h3 class="section-title">Simulation Controls</h3>
+            <div class="section-content">
+              <div class="form-group">
+                <label for="simulation-speed">Simulation Speed:</label>
+                <div class="range-with-value">
+                  <input type="range" id="simulation-speed" min="50" max="2000" step="50" value="500" class="form-range invert-range">
+                  <span id="simulation-speed-display" class="range-value">500 ms</span>
+                </div>
+              </div>
+              
+              <div class="form-group button-group simulation-controls">
+                <button id="initialize-btn" class="btn btn-primary">Initialize</button>
+                <button id="step-btn" class="btn btn-secondary" disabled>Step</button>
+                <button id="run-btn" class="btn btn-success" disabled>Run</button>
+                <button id="pause-btn" class="btn btn-warning" disabled>Pause</button>
+                <button id="reset-btn" class="btn btn-danger">Reset</button>
+              </div>
+              
+              <div class="form-group button-group">
+                <button id="export-image" class="btn btn-secondary">Export Image</button>
+                <button id="export-data" class="btn btn-secondary">Export Data</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="notification-container" class="notification-container"></div>
+
+    <footer class="app-footer">
+      <div class="footer-content">
+        <p class="copyright">© 2023 K-means Clustering Simulation</p>
+        <p class="attribution">Created for educational purposes</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/responsive.js"></script>
+<script src="../assets/js/iframeResize.js"></script>
+        
+        </body>
+</html>
+
+
